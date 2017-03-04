@@ -28,10 +28,20 @@
      password: '#passcode1',
      submit: '#hp-sign-in-btn'
    },
+   securebankofamerica: {
+     username: '#enterID-input',
+     password: '#tlpvt-passcode-input',
+     submit: 'a[name="enter-online-id-submit"]'
+   },
    citi: {
      username: '#usernameMasked',
      password: '#password',
      submit: '#signInBtn'
+   },
+   onlineciti: {
+     username: '#usernameMasked',
+     password: '#password',
+     submit: '#signon'
    },
    yahoo: {
      username: '#login-username',
@@ -78,8 +88,12 @@ function detectSite(url){
     return 'paypal';
   } else if (url.includes('instagram.com')){
     return 'instagram';
+  } else if (url.includes('secure.bankofamerica.com')){
+    return 'securebankofamerica';
   } else if (url.includes('bankofamerica.com')){
     return 'bankofamerica';
+  } else if (url.includes('citi.com') && url.includes('Next.do')){
+    return 'onlineciti';
   } else if (url.includes('citi.com')){
     return 'citi';
   } else if (url.includes('yahoo.com')){
@@ -158,6 +172,10 @@ function reroute(){
     if (currentSite == 'paypal'){
       if (!window.location.href.includes('paypal.com/signin')){
         window.location.href = 'https://www.paypal.com/signin';
+      }
+    } else if (currentSite == 'instagram'){
+      if ($('a:contains("Log in")').length){
+        $('a:contains("Log in")')[0].click();
       }
     }
 }

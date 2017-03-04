@@ -1,4 +1,39 @@
-The challenge is to be able to do the following actions in a given website:
+
+# SOLUTION
+
+  To solve this problem, I created an object that tracked the different
+  required sites, knowing the selectors that would be used to identify
+  the username and password fields, as well as the submit button.
+
+  One problem I ran into was the idea that all of the sites except Facebook
+  change pages before or during the form submission process.
+
+  For PayPal, I set up a function to reroute the user to the login screen
+  if they try to use the extension on another page.
+
+  For Instagram, I set up a function to go to the 'Log in' part of the form,
+  which is activated using JavaScript, if the user uses the extension on the
+  'Sign up' part of the page.
+
+  For Bank of America and Citibank, I created a separate set of selection tags for the alternate login page, treating it like a different website.
+
+  For Yahoo, you have to submit the form twice if you want to login. The user
+  can use the extension to hit login on each page if they wish, or navigate
+  through the fields using the website.
+
+  In Facebook's case, there is an alternate login page, but it uses the same fields as the initial one.
+
+  I did not find myself needing to use the background storage in the end,
+  although that was my initial direction upon reading the problem.
+
+  I have tried all 6 sites across each of the three functions and everything
+  seems to be working. Overall this is a very simple implementation of this
+  solution and it could be optimized given more time and planning.
+
+
+
+
+
  * Trigger form submit with a pair of credentials.
  * Find the form elements in the dom.
  * Obtain the values from the login elements in the dom.
