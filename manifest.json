@@ -32,7 +32,6 @@
     "scripts": [
       "/dist/assets/jquery.min.js",
       "/dist/default/background_script.js",
-      "/dist/default/content_script.js",
       "background.js"
     ],
     "persistent": false

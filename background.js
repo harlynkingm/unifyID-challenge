@@ -10,4 +10,3 @@
  * More about communication with the background script: https://developer.chrome.com/extensions/nativeMessaging
  *
  */
-

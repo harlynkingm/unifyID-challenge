@@ -6,12 +6,56 @@
  * Some utility functions that may or may not be useful.
  * Feel free to modify these.
  */
+
+ let fields = {
+   facebook: {
+     username: '#email',
+     password: '#pass',
+     submit: '#loginbutton'
+   },
+   paypal: {
+     username: '#email',
+     password: '#password',
+     submit: '#btnLogin'
+   },
+   instagram: {
+     username: 'input[name="username"]',
+     password: 'input[name="password"]',
+     submit: 'span button'
+   },
+   bankofamerica: {
+     username: '#onlineId1',
+     password: '#passcode1',
+     submit: '#hp-sign-in-btn'
+   },
+   citi: {
+     username: '#usernameMasked',
+     password: '#password',
+     submit: '#signInBtn'
+   },
+   yahoo: {
+     username: '#login-username',
+     password: '#login-passwd',
+     submit: '#login-signin'
+   }
+ }
+
 function getUsernameField() {
-  return $("#email");
+  let currentSite = detectSite(window.location.href);
+  if (currentSite){
+    return $(fields[currentSite].username);
+  } else {
+    return $("");
+  }
 }
 
 function getPasswordField() {
-  return $("#pass");
+  let currentSite = detectSite(window.location.href);
+  if (currentSite){
+    return $(fields[currentSite].password);
+  } else {
+    return $("");
+  }
 }
 
 function getFormField() {
@@ -19,7 +63,30 @@ function getFormField() {
 }
 
 function getSubmitButton() {
-  return $("#loginbutton");
+  let currentSite = detectSite(window.location.href);
+  if (currentSite){
+    return $(fields[currentSite].submit);
+  } else {
+    return $("");
+  }
+}
+
+function detectSite(url){
+  if (url.includes('facebook.com')){
+    return 'facebook';
+  } else if (url.includes('paypal.com')){
+    return 'paypal';
+  } else if (url.includes('instagram.com')){
+    return 'instagram';
+  } else if (url.includes('bankofamerica.com')){
+    return 'bankofamerica';
+  } else if (url.includes('citi.com')){
+    return 'citi';
+  } else if (url.includes('yahoo.com')){
+    return 'yahoo';
+  } else {
+    return '';
+  }
 }
 
 /**
@@ -31,9 +98,8 @@ function getSubmitButton() {
  */
 window.loginWithCredentials = function(username, password) {
 
-  //
-  // XXX: Modify this code, if necessary, to work on more sites.
-  //
+  reroute();
+
   let usernameField = getUsernameField();
   let passwordField = getPasswordField();
 
@@ -56,9 +122,8 @@ window.loginWithCredentials = function(username, password) {
  */
 window.detectFormFields = function() {
 
-  //
-  // XXX: Modify this code, if necessary, to work on more sites.
-  //
+  reroute();
+
   return {
     form: getFormField(),
     submitButton: getSubmitButton(),
@@ -79,12 +144,20 @@ window.detectFormFields = function() {
  */
 window.obtainFieldsValues = function() {
 
-  //
-  // XXX: Modify this code, if necessary, to work on more sites.
-  //
+  reroute();
+
   return {
     username: getUsernameField().val(),
     password: getPasswordField().val()
   };
 
 };
+
+function reroute(){
+    let currentSite = detectSite(window.location.href);
+    if (currentSite == 'paypal'){
+      if (!window.location.href.includes('paypal.com/signin')){
+        window.location.href = 'https://www.paypal.com/signin';
+      }
+    }
+}

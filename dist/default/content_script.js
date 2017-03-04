@@ -6,19 +6,19 @@ function colorizeField(element, color) {
 window.colorDetectFields = function() {
   let fields = window.detectFormFields();
   if (!fields.form) {
-    alert('Could not detect form');
+    console.log('Could not detect form');
     return;
   }
   if (!fields.submitButton) {
-    alert('Could not detect submitButton');
+    console.log('Could not detect submitButton');
     return;
   }
   if (!fields.username) {
-    alert('Could not detect username');
+    console.log('Could not detect username');
     return;
   }
   if (!fields.password) {
-    alert('Could not detect password');
+    console.log('Could not detect password');
     return;
   }
   colorizeField(fields.form, 'blue');
@@ -31,11 +31,11 @@ window.triggerObtainValues = function() {
   let result = window.obtainFieldsValues();
   console.log(result);
   if (!result.username) {
-    alert('No Username retrieved');
+    console.log('No Username retrieved');
     return;
   }
   if(!result.password) {
-    alert('No password retrieved');
+    console.log('No password retrieved');
     return;
   }
   console.log('Username: '+result.username+'; Password: '+result.password);
